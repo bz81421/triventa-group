@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triventa Group | Retail Digital Inteligente</title>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --secondary: #1e293b;
+      --accent: #3b82f6;
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #64748b;
+      --text-dark: #0f172a;
+      --white: #ffffff;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { animation: fadeInUp 0.8s ease-out forwards; }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* --- Navigation --- */
+    header {
+      width: 100%;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+
+    .header-content {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span { color: var(--secondary); }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    nav ul li a:hover { color: var(--primary); }
+    nav ul li a:hover::after { width: 100%; }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      background: #0f172a;
+      overflow: hidden;
+      color: white;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+      opacity: 0.3;
+      filter: saturate(0.5) blur(2px);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 30%, rgba(15, 23, 42, 0.6) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-text h1 span {
+      background: linear-gradient(to right, #10b981, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .floating-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 2rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 350px;
+      box-shadow: var(--shadow-lg);
+      transform: rotate(3deg);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(3deg); }
+      50% { transform: translateY(-20px) rotate(-2deg); }
+    }
+
+    /* --- User Profile --- */
+    #user-profile {
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(15, 23, 42, 0.05);
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    }
+
+    /* --- Buttons --- */
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .btn-primary { 
+      background: var(--primary); 
+      color: var(--white);
+      box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+    }
+    .btn-primary:hover { 
+      background: var(--primary-hover); 
+      transform: translateY(-2px); 
+      box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.4);
+    }
+    
+    .btn-outline { 
+      background: transparent; 
+      border: 2px solid var(--border); 
+      color: var(--text-dark); 
+    }
+    .btn-outline:hover { 
+      background: var(--bg-main);
+      border-color: var(--text-dark);
+    }
+    
+    .btn-cart {
+      position: relative;
+      background: var(--text-dark);
+      color: var(--white);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-cart:hover { transform: scale(1.05); background: var(--secondary); }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 3px solid var(--white);
+      font-weight: 800;
+    }
+
+    /* --- Geolocation Section --- */
+    .geo-banner {
+      background: white;
+      border-radius: 2rem;
+      padding: 2.5rem;
+      margin: -4rem 0 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 20;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .geo-info { display: flex; align-items: center; gap: 1.5rem; }
+    .geo-icon { 
+      font-size: 2rem;
+      background: #ecfdf5;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1.2rem;
+    }
+
+    #market-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .market-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 1.2rem;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .market-card:hover { 
+      border-color: var(--primary); 
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: var(--shadow-md);
+    }
+
+    .market-status {
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* --- Sections --- */
+    section { padding: 6rem 0; }
+    .section-title { 
+      margin-bottom: 4rem; 
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section-title h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .section-title h2 span { color: var(--primary); }
+
+    /* --- Products --- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-card:hover { 
+      transform: translateY(-10px); 
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    
+    .product-img-wrapper {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+    }
+    
+    .product-img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: transform 0.6s;
+    }
+    
+    .product-card:hover .product-img {
+      transform: scale(1.1);
+    }
+
+    .product-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .product-title { font-size: 1.2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .product-price { font-size: 1.6rem; font-weight: 900; color: var(--primary); margin-top: auto; padding-top: 1.2rem; }
+
+    /* --- Support Section --- */
+    .support-section {
+      background: var(--secondary);
+      color: white;
+      border-radius: 3rem;
+      padding: 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .support-form {
+      background: rgba(255,255,255,0.03);
+      padding: 3rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; margin-bottom: 0.6rem; font-size: 0.9rem; font-weight: 600; opacity: 0.9; }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.8rem;
+      color: white;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* --- Cart Drawer --- */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: 450px;
+      height: 100vh;
+      background: white;
+      z-index: 2000;
+      box-shadow: -20px 0 60px rgba(0,0,0,0.1);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.active { right: 0; }
+    .cart-drawer-header { padding: 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .cart-drawer-body { flex: 1; overflow-y: auto; padding: 2rem; }
+    .cart-drawer-footer { padding: 2rem; border-top: 1px solid var(--border); background: #f8fafc; }
+
+    /* --- Missing Components --- */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1500;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .cart-overlay.active { opacity: 1; visibility: visible; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 3rem;
+      border-radius: 2rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(20px);
+      animation: modalIn 0.4s ease forwards;
+    }
+
+    @keyframes modalIn {
+      to { transform: translateY(0); }
+    }
+
+    #toast-container {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--secondary);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .toast.active { transform: translateY(0); opacity: 1; }
+
+    /* --- Responsive --- */
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-text p { margin-left: auto; margin-right: auto; }
+      .hero-visual { display: none; }
+      .support-section { grid-template-columns: 1fr; padding: 3rem; gap: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1.5rem; }
+      .cart-drawer { width: 100%; right: -100%; }
+      header nav { display: none; }
+      .geo-banner { margin-top: -2rem; padding: 1.5rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="toast-container"></div>
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+<header id="mainHeader">
+  <div class="container header-content">
+    <a href="#" class="logo">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      Triventa<span>Group</span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#market-zone">Tiendas</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#soporte">Soporte</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <div id="user-profile" aria-live="polite">
+        <div class="avatar" id="user-initial">U</div>
+        <span id="user-name">Usuario</span>
+        <button onclick="logout()" style="background:none; border:none; cursor:pointer; font-size: 0.75rem; color: var(--danger); font-weight: 800; margin-left: 0.8rem; text-transform: uppercase;">Salir</button>
+      </div>
+      <button class="btn btn-outline" id="login-trigger" onclick="openLogin()">Iniciar Sesión</button>
+      <button class="btn-cart" onclick="toggleCart()" aria-label="Ver carrito">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  
+  <section id="inicio" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-text fade-in">
+        <h1>Mini Markets de barrio, <br><span>ahora digitales.</span></h1>
+        <p>Conectamos la cercanía de tu almacén favorito con la comodidad de la tecnología. Encuentra productos frescos y recíbelos en minutos.</p>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+          <button class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;" onclick="detectLocation()">
+            📍 Explorar tiendas cercanas
+          </button>
+          <button class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); padding: 1.2rem 2.5rem;" onclick="document.getElementById('productos').scrollIntoView()">
+            Ver catálogo completo
+          </button>
+        </div>
+      </div>
+      <div class="hero-visual fade-in" style="animation-delay: 0.2s;">
+        <div class="floating-card">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="width: 50px; height: 50px; background: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🚚</div>
+            <div>
+              <h4 style="color: white; font-weight: 800;">Pedido en camino</h4>
+              <p style="font-size: 0.8rem; opacity: 0.8;">Llegada estimada: 12 min</p>
+            </div>
+          </div>
+          <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+            <div style="width: 70%; height: 100%; background: var(--primary);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <section id="market-zone" style="padding: 0;">
+      <div class="geo-banner">
+        <div class="geo-info">
+          <div class="geo-icon">📍</div>
+          <div>
+            <h3 id="geo-status" style="color: var(--text-dark); font-weight: 800;">¿Dónde entregamos?</h3>
+            <p id="geo-address" style="font-size: 0.9rem; color: var(--accent); font-weight: 600;">Detecta tu ubicación para ver los markets en tu zona.</p>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="detectLocation()">Actualizar Radar</button>
+      </div>
+      <div id="market-list">
+        <!-- Los markets aparecerán aquí -->
+      </div>
+    </section>
+  </div>
+
+  <section id="beneficios" style="background: var(--white); border-radius: 2rem; margin: 2rem 0; padding: 4rem 2rem; border: 1px solid var(--border);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; text-align: center;">
+      <div>
+        <div style="width: 70px; height: 70px; background: #dcfce7; color: var(--primary); border-radius: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">🚀</div>
+        <h3 style="color: var(--text-dark); margin-bottom: 0.75rem;">Entrega en minutos</h3>
+        <p style="font-size: 0.95rem; opacity: 0.8;">Nuestra red de repartidores locales asegura que tu pedido llegue más rápido que nunca.</p>
+      </div>
+      <div>
+        <div style="width: 70px; height: 70px; background: #dbeafe; color: var(--accent); border-radius: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">🛡️</div>
+        <h3 style="color: var(--text-dark); margin-bottom: 0.75rem;">Calidad Garantizada</h3>
+        <p style="font-size: 0.95rem; opacity: 0.8;">Seleccionamos solo los productos más frescos y de mejores marcas de tu barrio.</p>
+      </div>
+      <div>
+        <div style="width: 70px; height: 70px; background: #fef3c7; color: #d97706; border-radius: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">🏠</div>
+        <h3 style="color: var(--text-dark); margin-bottom: 0.75rem;">Apoyo Local</h3>
+        <p style="font-size: 0.95rem; opacity: 0.8;">Al comprar en Triventa, estás impulsando el crecimiento de los negocios de tu propia comunidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="productos">
+    <div class="section-title">
+      <h2 style="font-size: 2.5rem;">Catálogo <span>Premium</span></h2>
+      <p>Selección curada de productos esenciales para tu hogar.</p>
+    </div>
+    <div class="products-grid">
+      <!-- Producto 1: Leche -->
+      <div class="product-card">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=800&auto=format&fit=crop" class="product-img" alt="Leche Premium Entera">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Leche Premium 1L</h3>
+          <p style="font-size: 0.85rem; opacity: 0.8;">Frescura garantizada de granjas locales certificadas.</p>
+          <div class="product-price">$1.290</div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Leche Premium', 1290, 'https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=200')">Agregar al pedido</button>
+        </div>
+      </div>
+
+      <!-- Producto 2: Papas -->
+      <div class="product-card">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?q=80&w=800&auto=format&fit=crop" class="product-img" alt="Papas Fritas Artesanales XL">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Papas Fritas XL</h3>
+          <p style="font-size: 0.85rem; opacity: 0.8;">El snack perfecto con sal de mar y corte grueso.</p>
+          <div class="product-price">$2.490</div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Papas XL', 2490, 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?q=80&w=100')">Agregar al pedido</button>
+        </div>
+      </div>
+
+      <!-- Producto 3: Bebida -->
+      <div class="product-card">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=800&auto=format&fit=crop" class="product-img" alt="Bebida Cola Refrescante">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Bebida Cola 1.5L</h3>
+          <p style="font-size: 0.85rem; opacity: 0.8;">Máxima efervescencia y sabor original helado.</p>
+          <div class="product-price">$1.990</div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Bebida Cola', 1990, 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=100')">Agregar al pedido</button>
+        </div>
+      </div>
+
+      <!-- Producto 4: Café -->
+      <div class="product-card">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=800&auto=format&fit=crop" class="product-img" alt="Café de Especialidad">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Café Especial Blend</h3>
+          <p style="font-size: 0.85rem; opacity: 0.8;">Notas de chocolate y caramelo, tostado medio.</p>
+          <div class="product-price">$4.990</div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Café Especial', 4990, 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=100')">Agregar al pedido</button>
+        </div>
+      </div>
+
+      <!-- Producto 5: Pan Masa Madre -->
+      <div class="product-card">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop" class="product-img" alt="Pan de Masa Madre Artesanal">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Pan Masa Madre</h3>
+          <p style="font-size: 0.85rem; opacity: 0.8;">Fermentación natural de 24 horas, corteza crujiente.</p>
+          <div class="product-price">$3.200</div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Pan Masa Madre', 3200, 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=200')">Agregar al pedido</button>
+        </div>
+      </div>
+
+      <!-- Producto 6: Palta Hass -->
+      <div class="product-card">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=800&auto=format&fit=crop" class="product-img" alt="Palta Hass Premium">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Palta Hass (1kg)</h3>
+          <p style="font-size: 0.85rem; opacity: 0.8;">Calidad extra, maduración perfecta lista para consumir.</p>
+          <div class="product-price">$5.800</div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Palta Hass', 5800, 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=100')">Agregar al pedido</button>
+        </div>
+      </div>
+
+      <!-- Producto 7: Yogurt Natural -->
+      <div class="product-card">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=800&auto=format&fit=crop" class="product-img" alt="Yogurt Griego Natural">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Yogurt Griego 500g</h3>
+          <p style="font-size: 0.85rem; opacity: 0.8;">Sin azúcar añadida, textura cremosa y alta en proteína.</p>
+          <div class="product-price">$2.150</div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Yogurt Griego', 2150, 'https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=100')">Agregar al pedido</button>
+        </div>
+      </div>
+
+      <!-- Producto 8: Vino Tinto -->
+      <div class="product-card">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop" class="product-img" alt="Vino Tinto Reserva Premium">
+        </div>
+        <div class="product-body">
+          <h3 class="product-title">Vino Tinto Reserva 750ml</h3>
+          <p style="font-size: 0.85rem; opacity: 0.8;">Crianza en barrica de roble francés, notas de frutos rojos y tabaco. Cosecha seleccionada.</p>
+          <div class="product-price">$8.990</div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Vino Tinto Reserva', 8990, 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=200')">Agregar al pedido</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="soporte">
+    <div class="support-section">
+      <div>
+        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: white;">¿Dudas o consultas?</h2>
+        <p style="margin-bottom: 2rem; opacity: 0.8;">Nuestro equipo de soporte está listo para asistirte en tiempo real.</p>
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+          <div style="width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">📩</div>
+          <div>
+            <p style="font-weight: 700; font-size: 1.1rem;">Email de Soporte</p>
+            <p style="color: var(--primary); font-weight: 600;">soporte@triventagroup.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="support-form">
+        <form id="contactForm" onsubmit="event.preventDefault(); sendSupport();">
+          <div class="form-group">
+            <label for="sup-name">Nombre completo</label>
+            <input type="text" id="sup-name" placeholder="Ej: Juan Pérez" required>
+          </div>
+          <div class="form-group">
+            <label for="sup-subject">Asunto</label>
+            <input type="text" id="sup-subject" placeholder="Consulta sobre pedido" required>
+          </div>
+          <div class="form-group">
+            <label for="sup-msg">Mensaje</label>
+            <textarea id="sup-msg" rows="4" placeholder="Escribe aquí tu duda..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Enviar mensaje ahora</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<aside class="cart-drawer" id="cartDrawer" aria-labelledby="cartTitle">
+  <div class="cart-drawer-header">
+    <h3 id="cartTitle">🛒 Resumen del Pedido</h3>
+    <button class="btn" onclick="toggleCart()" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cartContent">
+    <!-- Items dinámicos -->
+  </div>
+  <div class="cart-drawer-footer">
+    <div style="display:flex; justify-content:space-between; margin-bottom:1.5rem; font-weight:800; font-size:1.3rem; color: var(--text-dark);">
+      <span>Total Final</span>
+      <span id="cartTotal">$0</span>
+    </div>
+    <button class="btn btn-primary" style="width: 100%; padding: 1.2rem; font-size: 1rem;" onclick="checkout()">Confirmar y Pagar</button>
+  </div>
+</aside>
+
+<div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="modal-content">
+    <h2 id="authTitle" style="margin-bottom: 1.5rem; text-align: center;">Acceso Socios</h2>
+    <div class="form-group" style="color: var(--text-dark);">
+      <label for="auth-email">Correo Electrónico</label>
+      <input type="email" id="auth-email" placeholder="socio@empresa.com" style="background:#f1f5f9; color: var(--text-dark); border:1px solid #cbd5e1;">
+    </div>
+    <div class="form-group" style="color: var(--text-dark);">
+      <label for="auth-pass">Contraseña</label>
+      <input type="password" id="auth-pass" placeholder="••••••••" style="background:#f1f5f9; color: var(--text-dark); border:1px solid #cbd5e1;">
+    </div>
+    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="login()">Ingresar al Portal</button>
+    <button class="btn" style="width: 100%; margin-top: 1rem; color: var(--text-main);" onclick="closeLogin()">Cerrar</button>
+  </div>
+</div>
+
+<footer style="background: var(--secondary); color: white; padding: 4rem 0; margin-top: 4rem; border-top: 4px solid var(--primary);">
+  <div class="container" style="text-align: center; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+    <a href="#" class="logo" style="color: white; justify-content: center; filter: brightness(0) invert(1);">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      Triventa<span style="color: var(--primary);">Group</span>
+    </a>
+    <p style="opacity: 0.8; font-size: 1rem; max-width: 400px; line-height: 1.5;">Conectando barrios digitalmente. Llevando los mejores productos a la puerta de tu casa.</p>
+    <div style="width: 50px; height: 2px; background: var(--primary); margin: 1rem 0;"></div>
+    <p style="opacity: 0.5; font-size: 0.8rem;">&copy; 2026 Triventa Group. Todos los derechos reservados. <br>Logística de última milla para el comercio local.</p>
+  </div>
+</footer>
+
+<script>
+  let cart = [];
+  try {
+    cart = JSON.parse(localStorage.getItem('tvg_cart_v3')) || [];
+  } catch(e) { cart = []; }
+
+  let currentUser = null;
+  try {
+    currentUser = JSON.parse(localStorage.getItem('tvg_user_v3')) || null;
+  } catch(e) { currentUser = null; }
+
+  // --- Geolocation Logic ---
+  const markets = [
+    { name: "Market 'La Esquina'", dist: "350m", status: "Abierto", color: "#10b981", icon: "🍏" },
+    { name: "Don Pepe Express", dist: "850m", status: "Cerrando pronto", color: "#f59e0b", icon: "🥖" },
+    { name: "EcoMarket Santa Ana", dist: "1.2km", status: "Abierto", color: "#10b981", icon: "🥬" },
+    { name: "Minimarket El Sol", dist: "1.5km", status: "Abierto", color: "#10b981", icon: "🧀" }
+  ];
+
+  function detectLocation() {
+    const status = document.getElementById('geo-status');
+    const address = document.getElementById('geo-address');
+    
+    status.innerText = "Sincronizando con satélites...";
+    status.style.color = "var(--primary)";
+    
+    if (!navigator.geolocation) {
+      showToast("❌ Tu navegador no soporta GPS");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        status.innerText = "📍 Radar activo: Tiendas detectadas";
+        address.innerText = `Posición confirmada en Lat: ${pos.coords.latitude.toFixed(4)}. Buscando los mejores precios para ti.`;
+        showToast("✅ Localización configurada");
+        renderMarkets();
+        document.getElementById('market-zone').scrollIntoView();
+      },
+      () => {
+        status.innerText = "⚠️ Acceso denegado";
+        status.style.color = "var(--danger)";
+        address.innerText = "No pudimos acceder al radar GPS. Mostrando opciones generales de la zona.";
+        renderMarkets();
+      }
+    );
+  }
+
+  function renderMarkets() {
+    const list = document.getElementById('market-list');
+    list.innerHTML = markets.map(m => `
+      <div class="market-card">
+        <div style="font-size: 1.8rem;">${m.icon}</div>
+        <div style="flex: 1;">
+          <h4 style="color: var(--text-dark); font-weight: 700;">${m.name}</h4>
+          <p style="font-size: 0.8rem; opacity: 0.8;">Distancia estimada: ${m.dist}</p>
+        </div>
+        <span class="market-status" style="background: ${m.color}15; color: ${m.color}; border: 1px solid ${m.color}30;">${m.status}</span>
+      </div>
+    `).join('');
+  }
+
+  // --- Auth Logic ---
+  function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
+  function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
+
+  function login() {
+    const email = document.getElementById('auth-email').value;
+    const pass = document.getElementById('auth-pass').value;
+
+    if (!email.includes('@')) return showToast("❌ Ingresa un correo corporativo válido");
+    if (pass.length < 4) return showToast("❌ Contraseña demasiado corta");
+    
+    const name = email.split('@')[0];
+    currentUser = { name: name.charAt(0).toUpperCase() + name.slice(1), email };
+    localStorage.setItem('tvg_user_v3', JSON.stringify(currentUser));
+    updateAuthUI();
+    closeLogin();
+    showToast(`👋 Bienvenido de nuevo, ${currentUser.name}`);
+  }
+
+  function logout() {
+    currentUser = null;
+    localStorage.removeItem('tvg_user_v3');
+    updateAuthUI();
+    showToast("Has cerrado sesión correctamente");
+  }
+
+  function updateAuthUI() {
+    const profile = document.getElementById('user-profile');
+    const trigger = document.getElementById('login-trigger');
+    if (currentUser) {
+      profile.style.display = 'flex';
+      trigger.style.display = 'none';
+      document.getElementById('user-name').innerText = currentUser.name;
+      document.getElementById('user-initial').innerText = currentUser.name[0];
+    } else {
+      profile.style.display = 'none';
+      trigger.style.display = 'flex';
+    }
+  }
+
+  // --- Cart Logic ---
+  function toggleCart() {
+    document.getElementById('cartDrawer').classList.toggle('active');
+    document.getElementById('cartOverlay').classList.toggle('active');
+  }
+
+  function addToCart(name, price, img) {
+    const existing = cart.find(i => i.name === name);
+    if (existing) existing.qty++;
+    else cart.push({name, price, img, qty: 1});
+    syncCart();
+    showToast(`➕ ${name} añadido`);
+  }
+
+  function syncCart() {
+    const container = document.getElementById('cartContent');
+    const badge = document.getElementById('cartBadge');
+    const totalEl = document.getElementById('cartTotal');
+    let total = 0, count = 0;
+
+    container.innerHTML = cart.length ? '' : `
+      <div style="text-align:center; padding-top:4rem;">
+        <div style="font-size:3rem; margin-bottom:1rem; opacity:0.3;">🛒</div>
+        <p style="opacity:0.5; font-weight:500;">Tu carrito está esperando por productos frescos.</p>
+      </div>
+    `;
+    
+    cart.forEach((item, i) => {
+      total += item.price * item.qty;
+      count += item.qty;
+      container.innerHTML += `
+        <div style="display:flex; gap:1.2rem; margin-bottom:1.5rem; background:#f8fafc; padding:1rem; border-radius:1rem; position:relative;">
+          <img src="${item.img}" style="width:70px; height:70px; border-radius:0.75rem; object-fit:cover; border: 1px solid var(--border);">
+          <div style="flex:1;">
+            <h4 style="font-size:0.95rem; color:var(--text-dark); margin-bottom:0.2rem;">${item.name}</h4>
+            <p style="color:var(--primary); font-weight:800; font-size:1.1rem;">$${item.price.toLocaleString('es-CL')}</p>
+            <div style="display:flex; align-items:center; gap:0.8rem; margin-top:0.5rem;">
+              <button onclick="updateQty(${i}, -1)" style="width:24px; height:24px; border-radius:50%; border:1.5px solid var(--border); background:white; cursor:pointer;">-</button>
+              <span style="font-weight:700; font-size:0.9rem;">${item.qty}</span>
+              <button onclick="updateQty(${i}, 1)" style="width:24px; height:24px; border-radius:50%; border:1.5px solid var(--border); background:white; cursor:pointer;">+</button>
+            </div>
+          </div>
+          <button onclick="removeItem(${i})" style="position:absolute; top:0.5rem; right:0.5rem; background:none; border:none; cursor:pointer; color:var(--danger); font-size:1.1rem;" title="Eliminar">✕</button>
+        </div>
+      `;
+    });
+
+    badge.innerText = count;
+    totalEl.innerText = `$${total.toLocaleString('es-CL')}`;
+    localStorage.setItem('tvg_cart_v3', JSON.stringify(cart));
+  }
+
+  function updateQty(i, delta) {
+    cart[i].qty += delta;
+    if (cart[i].qty <= 0) cart.splice(i, 1);
+    syncCart();
+  }
+
+  function removeItem(i) {
+    cart.splice(i, 1);
+    syncCart();
+    showToast("🗑️ Producto eliminado");
+  }
+
+  function checkout() {
+    if (!currentUser) {
+      showToast("⚠️ Debes iniciar sesión para finalizar");
+      openLogin();
+      return;
+    }
+    if (!cart.length) return showToast("⚠️ El carrito está vacío");
+    
+    showToast("🚀 Procesando pago seguro...");
+    setTimeout(() => {
+      showToast("✅ ¡Pedido confirmado! Te enviaremos un email.");
+      cart = [];
+      syncCart();
+      toggleCart();
+    }, 2000);
+  }
+
+  // --- Utils ---
+  function showToast(msg) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `<span>⚡</span> <span style="font-weight:600;">${msg}</span>`;
+    container.appendChild(toast);
+    setTimeout(() => toast.classList.add('active'), 50);
+    setTimeout(() => {
+      toast.classList.remove('active');
+      setTimeout(() => toast.remove(), 400);
+    }, 3500);
+  }
+
+  function sendSupport() {
+    showToast("📧 Hemos recibido tu mensaje. Te contactaremos pronto.");
+    document.getElementById('contactForm').reset();
+  }
+
+  // Modal close on overlay click
+  window.onclick = function(e) {
+    const modal = document.getElementById('loginModal');
+    if (e.target === modal) closeLogin();
+  }
+
+  // Enter key for login
+  document.getElementById('auth-pass').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') login();
+  });
+
+  // Init
+  updateAuthUI();
+  syncCart();
+</script>
+
+</body>
+</html>

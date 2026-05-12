@@ -1,1 +1,0 @@
-# triventa-group
